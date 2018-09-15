@@ -1,0 +1,89 @@
+body {
+    background-color: #1976d2;
+    text-align: center ;
+}
+
+body.verified {
+    background-color: #43a047;
+}
+
+body.failed {
+    background-color: #e53935;
+}
+
+body, button, ::placeholder, input, textarea {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+h1 {
+    color: #ffffff;
+    font-weight: 300;
+    text-align: center;
+}
+
+h2 {
+    color: #222222;
+    font-weight: 300;
+    text-align: center;
+}
+
+input, textarea {
+    color: #222222;
+    background-color: white;
+    border: 1px solid #01579b;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+:disabled {
+    background-color: #eeeeee;
+}
+
+button {
+    color: white;
+    background-color: #1976d2;
+    border: 1px solid #01579b;
+    width: 100%;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+div.card {
+    width: 400px;
+    background-color: white;
+    display: inline-table;
+    margin: 40px 20px;
+    padding: 40px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .9);
+    border-radius: 4px;
+}
+
+p {
+    margin: 10px;
+}
+
+#verification_message {
+    font-size: 30px;
+}
+
+#verification_message.match {
+    color: #43a047;
+}
+
+#verification_message.no_match {
+    color: #e53935;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+}

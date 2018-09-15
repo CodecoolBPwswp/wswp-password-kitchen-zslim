@@ -14,7 +14,7 @@ def hashing():
     password_to_hash = request.form["password"]
     new_hash = hash_manager.hash_password(password_to_hash)
     return render_template("index.html", password_to_hash=password_to_hash,
-                           new_hash=new_hash)
+                           new_hash=new_hash, body_class="default")
 
 
 @app.route("/verify", methods=["POST"])

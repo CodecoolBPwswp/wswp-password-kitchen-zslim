@@ -7,5 +7,8 @@ def hash_password(plain_text_password):
 
 
 def verify_password(given_plain_text, hashed_password):
-    is_correct = bcrypt.checkpw(given_plain_text.encode("utf-8"), hashed_password.encode("utf-8"))
+    try:
+        is_correct = bcrypt.checkpw(given_plain_text.encode("utf-8"), hashed_password.encode("utf-8"))
+    except ValueError:
+        is_correct = False
     return is_correct

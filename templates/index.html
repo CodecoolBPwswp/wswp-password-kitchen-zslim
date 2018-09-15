@@ -6,32 +6,38 @@
     <link rel="stylesheet" href="/static/css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
-<body class="{{ body_class }}">
+<body class="{{ "verified" if verification_result is sameas true }}{{ "failed" if verification_result is sameas false }}">
 
 <h1>Password Kitchen</h1>
 
-<div>
+<div class="card">
     <h2>Hash</h2>
-    <form action="{{ url_for("hashing") }}" method="POST">
+    <form action="{{ url_for("hashing") }}" method="POST" id="hash_form">
         <p><input type="text" name="password" placeholder="password" required value="{{ password_to_hash }}"></p>
-        <p><input type="submit" value="Hash it!"></p>
-        <textarea name="hash" id="" cols="21" rows="4" disabled placeholder="hash">{{ new_hash }}</textarea>
+        <p><button type="submit" form="hash_form">Hash it!</button></p>
+        <p><textarea name="hash" rows="4" disabled placeholder="hash">{{ new_hash }}</textarea></p>
     </form>
+
 </div>
 
-<div>
+<div class="card">
     <h2>Verify</h2>
-    <form action="{{ url_for("verifying") }}" method="POST">
+    <form action="{{ url_for("verifying") }}" method="POST" id="verifying_form">
         <p><input type="text" name="password_to_verify" placeholder="password" required value="{{ password_to_verify }}"></p>
-        <textarea name="hash_to_compare" id="" cols="21" rows="4" placeholder="hash" required>{{ hash_to_compare }}</textarea>
-        <p><input type="submit" value="Verify it!"></p>
+        <p><textarea name="hash_to_compare" id="" rows="4" placeholder="hash" required>{{ hash_to_compare }}</textarea></p>
+        <p><button type="submit" form="verifying_form">Verify it!</button></p>
     </form>
+    <div class="{{ "match" if verification_result is sameas true }}{{ "no_match" if verification_result is sameas false }}"
+         id="verification_message">
         {% if verification_result is sameas true %}
             It's a match!
         {% elif verification_result is sameas false %}
             Doesn't match :(
         {% endif %}
+    </div>
 </div>
+
+<h3><a href="{{ url_for("index") }}">Start fresh</a></h3>
 
 </body>
 </html>
