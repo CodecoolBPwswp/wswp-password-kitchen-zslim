@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Password Kitchen</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
-<body>
+<body class="{{ body_class }}">
 
 <h1>Password Kitchen</h1>
 
 <div>
     <h2>Hash</h2>
+    <form action="{{ url_for("hashing") }}" method="POST">
+        <p><input type="text" name="password" placeholder="password" required value="{{ password_to_hash }}"></p>
+        <p><input type="submit" value="Hash it!"></p>
+        <textarea name="hash" id="" cols="21" rows="4" disabled placeholder="hash">{{ new_hash }}</textarea>
+    </form>
 </div>
 
 <div>
     <h2>Verify</h2>
+    <form action="{{ url_for("verifying") }}" method="POST">
+        <p><input type="text" name="password_to_verify" placeholder="password" required value="{{ password_to_verify }}"></p>
+        <textarea name="hash_to_compare" id="" cols="21" rows="4" placeholder="hash" required>{{ hash_to_compare }}</textarea>
+        <p><input type="submit" value="Verify it!"></p>
+    </form>
+        {% if verification_result is sameas true %}
+            It's a match!
+        {% elif verification_result is sameas false %}
+            Doesn't match :(
+        {% endif %}
 </div>
 
 </body>
